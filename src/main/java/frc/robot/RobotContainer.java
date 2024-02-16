@@ -7,11 +7,21 @@ package frc.robot;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Autos;
 import frc.robot.commands.ShootInAmp;
+import frc.robot.commands.ShootInSpeaker;
+import frc.robot.commands.ClimberBothDown;
+import frc.robot.commands.ClimberBothUp;
+import frc.robot.commands.ClimberLeftDown;
+import frc.robot.commands.IntakeIn;
+import frc.robot.commands.IntakeToShot;
+import frc.robot.commands.ShootStop;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.Climber;
+import frc.robot.subsystems.Drivetrain;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import frc.robot.commands.ClimberRightDown;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -23,6 +33,8 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final Shooter shooter = new Shooter();
   private final Intake intake = new Intake();
+  private final Climber climber = new Climber();
+  private final Drivetrain drivetrain = new Drivetrain();
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
   private final CommandXboxController m_driverController = new CommandXboxController(OperatorConstants.kDriverControllerPort);
@@ -44,9 +56,17 @@ public class RobotContainer {
    * joysticks}.
    */
   private void configureBindings() {
-    m_driverController
-      .leftTrigger()
-      .onTrue(new ShootInAmp(shooter));
+    m_driverController.leftTrigger().onTrue(new ShootInAmp(shooter));
+    m_driverController.rightTrigger().onTrue(new ShootInSpeaker(shooter));
+
+    m_driverController.povUp().onTrue(new ClimberBothUp(climber));
+    m_driverController.povDown().onTrue(new ClimberBothDown(climber));
+    m_driverController.povLeft().onTrue( new ClimberLeftDown (climber));
+    m_driverController.povRight().onTrue(new ClimberRightDown(climber));
+
+    m_driverController.rightBumper().onTrue(new IntakeIn(intake));
+    
+    
   }
 
   /**

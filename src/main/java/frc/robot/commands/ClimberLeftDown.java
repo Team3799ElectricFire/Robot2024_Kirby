@@ -8,10 +8,10 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Climber;
 import frc.robot.Constants.MotorSpeeds;
 
-public class ClimberLeftUp extends Command {
+public class ClimberLeftDown extends Command {
   private final Climber _Climber;
   /** Creates a new ClimberLeftUp. */
-  public ClimberLeftUp(Climber climber) {
+  public ClimberLeftDown(Climber climber) {
     _Climber= climber;
     addRequirements(climber);
 
@@ -31,7 +31,7 @@ public class ClimberLeftUp extends Command {
     _Climber.stopLeftClimbMotor();
     }
     else {            
-    _Climber.setLeftClimbMotor(MotorSpeeds.kClimberSpeed);
+    _Climber.setLeftClimbMotor(-MotorSpeeds.kClimberSpeed);
     }
   }
 
