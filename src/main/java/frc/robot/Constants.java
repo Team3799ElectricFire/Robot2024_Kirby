@@ -24,36 +24,56 @@ public final class Constants {
   }
 
   public static class PneumaticsConstants {
-    public static final int kAmpArmChannel = 0;
-    public static final int kLeftBrakeChannel = 1;
-    public static final int kRightBrakeChannel = 2;
+    public static final int kAmpArmChannel = 10;
+    public static final int kLeftBrakeChannel = 9;
+    public static final int kRightBrakeChannel = 8;
   }
 
+
+  // public static class CANbusIds {
+  //   public static final int kLeftClimbMotorID = 1;
+  //   public static final int kRightClimbMotorID = 2;
+  //   public static final int kIntakeMotorID = 3;
+  //   public static final int kPneumaticsModuleID = 4;
+  //   public static final int kLeftFlyWheelID = 5;
+  //   public static final int kRightFlyWheelID = 6;
+  //   public static final int FrontRightSteerMotorID = 7;
+  //   public static final int FrontLeftSteerMotorID = 8;
+  //   public static final int BackRightSteerMotorID = 9;
+  //   public static final int BackLeftSteerMotorID = 10;
+  //   public static final int FrontRightDriveMotorID = 11;
+  //   public static final int FrontLeftDriveMotorID = 12;
+  //   public static final int BackRightDriveMotorID = 13;
+  //   public static final int BackLeftDriveMotorID = 14;
+  //   public static final int PidgeonID = 15;
+  //   public static final int PcmID = 16; 
+  //   public static final int PowerDistributionHub = 17;
+  // }
+
   public static class CANbusIds {
-    public static final int kLeftClimbMotorID = 1;
-    public static final int kRightClimbMotorID = 2;
-    public static final int kIntakeMotorID = 3;
-    public static final int kPneumaticsModuleID = 4;
-    public static final int kLeftFlyWheelID = 5;
-    public static final int kRightFlyWheelID = 6;
-    public static final int FrontRightSteerMotorID = 7;
-    public static final int FrontLeftSteerMotorID = 8;
-    public static final int BackRightSteerMotorID = 9;
-    public static final int BackLeftSteerMotorID = 10;
-    public static final int FrontRightDriveMotorID = 11;
-    public static final int FrontLeftDriveMotorID = 12;
-    public static final int BackRightDriveMotorID = 13;
-    public static final int BackLeftDriveMotorID = 14;
-    public static final int PidgeonID = 15;
-    public static final int PcmID = 16; 
-    public static final int PowerDistributionHub = 17;
+    public static final int kLeftClimbMotorID = 13;
+    public static final int kRightClimbMotorID = 14;
+    public static final int kIntakeMotorID = 10;
+    public static final int kPneumaticsModuleID = 16;
+    public static final int kLeftFlyWheelID = 11;
+    public static final int kRightFlyWheelID = 12;
+    public static final int FrontRightSteerMotorID = 8;
+    public static final int FrontLeftSteerMotorID = 2;
+    public static final int BackRightSteerMotorID = 6;
+    public static final int BackLeftSteerMotorID = 4;
+    public static final int FrontRightDriveMotorID = 9;
+    public static final int FrontLeftDriveMotorID = 3;
+    public static final int BackRightDriveMotorID = 7;
+    public static final int BackLeftDriveMotorID = 5;   
+    public static final int PidgeonID = 17;
+    public static final int PowerDistributionHub = 15;
   }
 
   public static class MotorSpeeds {
     public static final double kIntakeSpeed = 0.5;
     public static final double kAmpShootRPM = 500; // TODO come back check speed
     public static final double kSpeakerShootRPM = 1500; //TODO come back check speed
-    public static final double kClimberSpeed = 0.75;
+    public static final double kClimberSpeed = 0.25;
   }
 
   public static class DioChannels {
@@ -63,7 +83,7 @@ public final class Constants {
   }
 
   public static class SoftLimits {
-    public static final double kClimberMax = 1000; // TODO double check the limit
+    public static final double kClimberMax = 1000000; // TODO double check the limit
   }
 
   

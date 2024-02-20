@@ -27,7 +27,7 @@ public class ClimberRightDown extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (_Climber.rightAtMax()){
+    if (_Climber.rightAtHome()){
     _Climber.stopRightClimbMotor();
     }
     else {            

@@ -22,6 +22,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.ClimberRightDown;
+import frc.robot.commands.DriveRobot;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -56,15 +57,20 @@ public class RobotContainer {
    * joysticks}.
    */
   private void configureBindings() {
-    m_driverController.leftTrigger().onTrue(new ShootInAmp(shooter));
-    m_driverController.rightTrigger().onTrue(new ShootInSpeaker(shooter));
+    drivetrain.setDefaultCommand(new DriveRobot(drivetrain, m_driverController::getLeftX, m_driverController::getLeftY, m_driverController::getRightX));
 
-    m_driverController.povUp().onTrue(new ClimberBothUp(climber));
-    m_driverController.povDown().onTrue(new ClimberBothDown(climber));
-    m_driverController.povLeft().onTrue( new ClimberLeftDown (climber));
-    m_driverController.povRight().onTrue(new ClimberRightDown(climber));
+   m_driverController.leftTrigger().whileTrue(new ShootInAmp(shooter));
+   m_driverController.rightTrigger().whileTrue(new ShootInSpeaker(shooter));
 
-    m_driverController.rightBumper().onTrue(new IntakeIn(intake));
+    //m_driverController.leftTrigger().onTrue(new ShootInAmp(shooter));
+    //m_driverController.rightTrigger().onTrue(new ShootInSpeaker(shooter));
+
+    m_driverController.povUp().whileTrue(new ClimberBothUp(climber));
+    m_driverController.povDown().whileTrue(new ClimberBothDown(climber));
+    m_driverController.povLeft().whileTrue( new ClimberLeftDown (climber));
+    m_driverController.povRight().whileTrue(new ClimberRightDown(climber));
+
+    m_driverController.rightBumper().whileTrue(new IntakeIn(intake));
     
     
   }

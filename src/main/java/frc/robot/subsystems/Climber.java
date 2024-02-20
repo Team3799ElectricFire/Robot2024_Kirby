@@ -34,12 +34,12 @@ public class Climber extends SubsystemBase {
 
     leftClimbTalonSRX = new TalonFX(CANbusIds.kLeftClimbMotorID);
     leftClimbTalonSRX.configFactoryDefault();
-    leftClimbTalonSRX.setInverted(false);
+    leftClimbTalonSRX.setInverted(true);
     leftClimbTalonSRX.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor);
     
     rightClimbTalonSRX = new TalonFX(CANbusIds.kRightClimbMotorID);
     rightClimbTalonSRX.configFactoryDefault();
-    rightClimbTalonSRX.setInverted(false);
+    rightClimbTalonSRX.setInverted(true);
     rightClimbTalonSRX.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor);
   }
 
