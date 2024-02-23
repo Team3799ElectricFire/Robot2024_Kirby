@@ -57,7 +57,10 @@ public class Drivetrain extends SubsystemBase {
   private Translation2d RotationCenter = new Translation2d();
 
   /** Creates a new Drivetrain. */
-  public Drivetrain() {}
+  public Drivetrain() {
+    //System.out.println("Track width:" + Constants.kTrackWidth);
+    //System.out.println("Wheel base:" + Constants.kWheelBase);
+  }
 
   @Override
   public void periodic() {

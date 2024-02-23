@@ -29,27 +29,6 @@ public final class Constants {
     public static final int kRightBrakeChannel = 8;
   }
 
-
-  // public static class CANbusIds {
-  //   public static final int kLeftClimbMotorID = 1;
-  //   public static final int kRightClimbMotorID = 2;
-  //   public static final int kIntakeMotorID = 3;
-  //   public static final int kPneumaticsModuleID = 4;
-  //   public static final int kLeftFlyWheelID = 5;
-  //   public static final int kRightFlyWheelID = 6;
-  //   public static final int FrontRightSteerMotorID = 7;
-  //   public static final int FrontLeftSteerMotorID = 8;
-  //   public static final int BackRightSteerMotorID = 9;
-  //   public static final int BackLeftSteerMotorID = 10;
-  //   public static final int FrontRightDriveMotorID = 11;
-  //   public static final int FrontLeftDriveMotorID = 12;
-  //   public static final int BackRightDriveMotorID = 13;
-  //   public static final int BackLeftDriveMotorID = 14;
-  //   public static final int PidgeonID = 15;
-  //   public static final int PcmID = 16; 
-  //   public static final int PowerDistributionHub = 17;
-  // }
-
   public static class CANbusIds {
     public static final int kLeftClimbMotorID = 13;
     public static final int kRightClimbMotorID = 14;
@@ -88,11 +67,12 @@ public final class Constants {
 
   
   // Calculations required for driving motor conversion factors and feed forward
+  public static final int kDrivingMotorPinionTeeth = 14;
   public static final double NeoMotorFreeSpeedRpm = 5676;
   public static final double kDrivingMotorFreeSpeedRps = NeoMotorFreeSpeedRpm / 60;
-  public static final double kWheelDiameterMeters = Units.inchesToMeters(3.0);
+  public static final double kWheelDiameterMeters = 0.0762;
   public static final double kWheelCircumfrenceMeters = kWheelDiameterMeters * Math.PI; 
-  public static final double kDrivingMotorReduction = 4.71;
+  public static final double kDrivingMotorReduction = (45.0 * 22) / (kDrivingMotorPinionTeeth * 15);
   public static final double kDriveWheelFreeSpeedRps = (kDrivingMotorFreeSpeedRps * kWheelCircumfrenceMeters) / kDrivingMotorReduction; 
 
   public static final double kDrivingEncoderPositionFactor = kWheelCircumfrenceMeters / kDrivingMotorReduction;
@@ -107,24 +87,24 @@ public final class Constants {
   public static final double kBackLeftChassisAngularOffset = Math.PI;
   public static final double kBackRightChassisAngularOffset = Math.PI / 2;
 
-// Chassis configuration
-public static final double kTrackWidth = Units.inchesToMeters(30.0 - (2*1.75)); // Wdith in Y-Axis direction (left right)
-public static final double kWheelBase = Units.inchesToMeters(26.0 - (2*1.75)); // Length in X-Axis direction (fwd back)
-public static final double kMaxSpeedMetersPerSecond = Units.feetToMeters(15.76);
-public static final double kMinSpeedMetersPerSecond = 0.01;
-public static final double kMaxAccelMetersPerSecondSquared = 2.0;
-public static final double kMaxAngularSpeed = 6.0; //kMaxSpeedMetersPerSecond / Units.inchesToMeters(18.55);
-public static final double minThumbstickMagnitude = 0.1;
-public static final Translation2d FrontRightLocation = new Translation2d(+kWheelBase / 2, -kTrackWidth / 2); // Positive X is fwd
-public static final Translation2d FrontLeftLocation = new Translation2d(+kWheelBase / 2, +kTrackWidth / 2); // Positive Y if left
-public static final Translation2d BackRightLocation = new Translation2d(-kWheelBase / 2, -kTrackWidth / 2);
-public static final Translation2d BackLeftLocation = new Translation2d(-kWheelBase / 2, +kTrackWidth / 2);
-public static final SwerveDriveKinematics kDriveKinematics = new SwerveDriveKinematics(
+  // Chassis configuration
+  public static final double kTrackWidth = Units.inchesToMeters(30.0 - (2*1.75)); // Wdith in Y-Axis direction (left right)
+  public static final double kWheelBase = Units.inchesToMeters(26.0 - (2*1.75)); // Length in X-Axis direction (fwd back)
+  public static final double kMaxSpeedMetersPerSecond = Units.feetToMeters(15.76);
+  public static final double kMinSpeedMetersPerSecond = 0.01;
+  public static final double kMaxAccelMetersPerSecondSquared = 2.0;
+  public static final double kMaxAngularSpeed = 6.0; //kMaxSpeedMetersPerSecond / Units.inchesToMeters(18.55);
+  public static final double minThumbstickMagnitude = 0.1;
+  public static final Translation2d FrontRightLocation = new Translation2d(+kWheelBase / 2, -kTrackWidth / 2); // Positive X is fwd
+  public static final Translation2d FrontLeftLocation = new Translation2d(+kWheelBase / 2, +kTrackWidth / 2); // Positive Y if left
+  public static final Translation2d BackRightLocation = new Translation2d(-kWheelBase / 2, -kTrackWidth / 2);
+  public static final Translation2d BackLeftLocation = new Translation2d(-kWheelBase / 2, +kTrackWidth / 2);
+  public static final SwerveDriveKinematics kDriveKinematics = new SwerveDriveKinematics(
     FrontRightLocation,
     FrontLeftLocation,
     BackRightLocation,
     BackLeftLocation
-);
+  );
 
   // Drivetrain PID Parameters
   public static final double kTurningEncoderPositionPIDMinInput = 0; // radians
@@ -154,4 +134,10 @@ public static final SwerveDriveKinematics kDriveKinematics = new SwerveDriveKine
   public static final double TurboSpeedMultiple = 0.90;
   public static final double HighSpeedMultiple = 0.65;
   public static final double LowSpeedMultiple = 0.30;
+
+  // Flywheel PID Parameters
+  public static final double kFlywheelFF = 1023.0/20450.0;
+  public static final double kFlywheelP = 0.0;
+  public static final double kFlywheelI = 0.0;
+  public static final double kFlywheelD = 0.0;
 }

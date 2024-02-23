@@ -8,12 +8,12 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Shooter;
 
 public class ShootInSpeaker extends Command {
-  private final Shooter _speakerShooter;
+  private final Shooter _Shooter;
   /** Creates a new shootSpeaker. */
-  public ShootInSpeaker(Shooter speakerShoota) {
-    _speakerShooter = speakerShoota;
+  public ShootInSpeaker(Shooter shooter) {
+    _Shooter = shooter;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(speakerShoota);
+    addRequirements(shooter);
   }
 
   // Called when the command is initially scheduled.
@@ -23,13 +23,13 @@ public class ShootInSpeaker extends Command {
 
   @Override
   public void execute() {
-    _speakerShooter.prepShootAtSpeaker(); // TODO check speed 
+    _Shooter.prepShootAtSpeaker();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-  // TODO check what to dp if interupted and why red
+    _Shooter.shootStop();
   }
 
   // Returns true when the command should end.

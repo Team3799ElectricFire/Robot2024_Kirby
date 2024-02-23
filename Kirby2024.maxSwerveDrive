@@ -1,0 +1,14 @@
+{
+    "driveMotorPinionTeeth": 14,
+    "sparkMaxIds": {
+        "frontLeftTurning": 2,
+        "frontLeftDrive": 3,
+        "frontRightTurning": 8,
+        "frontRightDrive": 9,
+        "backLeftTurning": 4,
+        "backLeftDrive": 5,
+        "backRightTurning": 6,
+        "backRightDrive": 7
+    },
+    "version": 1
+}
