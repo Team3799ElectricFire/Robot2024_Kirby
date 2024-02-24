@@ -27,7 +27,7 @@ public class ClimberBothDown extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    /* 
+     
     if (!_Climber.leftAtHome()) {
       _Climber.setLeftClimbMotor(-MotorSpeeds.kClimberSpeed);
     } else {
@@ -39,9 +39,7 @@ public class ClimberBothDown extends Command {
     } else {
       _Climber.stopRightClimbMotor();
     }
-    */
-    _Climber.setRightClimbMotor(-MotorSpeeds.kClimberSpeed);
-     _Climber.setLeftClimbMotor(-MotorSpeeds.kClimberSpeed);
+    
   }
 
   // Called once the command ends or is interrupted.
