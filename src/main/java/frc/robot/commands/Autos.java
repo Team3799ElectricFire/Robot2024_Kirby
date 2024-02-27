@@ -4,6 +4,8 @@
 
 package frc.robot.commands;
 
+import com.pathplanner.lib.commands.PathPlannerAuto;
+
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -19,6 +21,7 @@ public final class Autos {
     // ...add all Auto options here...
     // autoChooser.addOption("New Auto", new AutoCommand());
 
+    autoChooser.addOption("Test1", new PathPlannerAuto("Test1"));
 
     // Put the chooser on the driver station
     SmartDashboard.putData("Autonomous Mode", autoChooser);

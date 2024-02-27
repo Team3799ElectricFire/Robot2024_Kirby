@@ -21,6 +21,7 @@ import edu.wpi.first.math.util.Units;
 public final class Constants {
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
+     public static final int kCoDriverControllerPort = 1;
   }
 
   public static class PneumaticsConstants {
@@ -49,10 +50,10 @@ public final class Constants {
   }
 
   public static class MotorSpeeds {
-    public static final double kIntakeSpeed = 0.5;
+    public static final double kIntakeSpeed = 1.0;
     public static final double kAmpShootRPM = 500; // TODO come back check speed
-    public static final double kSpeakerShootRPM = 1500; //TODO come back check speed
-    public static final double kClimberSpeed = 0.25;
+    public static final double kSpeakerShootRPM = 1575; //TODO come back check speed
+    public static final double kClimberSpeed = 0.5;
   }
 
   public static class DioChannels {
@@ -62,7 +63,7 @@ public final class Constants {
   }
 
   public static class SoftLimits {
-    public static final double kClimberMax = 1000000; // TODO double check the limit
+    public static final double kClimberMax = 147000;
   }
 
   
@@ -90,6 +91,7 @@ public final class Constants {
   // Chassis configuration
   public static final double kTrackWidth = Units.inchesToMeters(30.0 - (2*1.75)); // Wdith in Y-Axis direction (left right)
   public static final double kWheelBase = Units.inchesToMeters(26.0 - (2*1.75)); // Length in X-Axis direction (fwd back)
+  public static final double kDriveBaseRadius = Math.sqrt(Math.pow(kTrackWidth/2.0,2) + Math.pow(kWheelBase/2.0,2)); // TODO check this math
   public static final double kMaxSpeedMetersPerSecond = Units.feetToMeters(15.76);
   public static final double kMinSpeedMetersPerSecond = 0.01;
   public static final double kMaxAccelMetersPerSecondSquared = 2.0;
@@ -132,12 +134,13 @@ public final class Constants {
 
   // Drivetrain low & high 'gear' speeds
   public static final double TurboSpeedMultiple = 0.90;
-  public static final double HighSpeedMultiple = 0.65;
-  public static final double LowSpeedMultiple = 0.30;
+  public static final double HighSpeedMultiple = 1.0;
+  public static final double LowSpeedMultiple = 0.50;
 
   // Flywheel PID Parameters
   public static final double kFlywheelFF = 1023.0/20450.0;
   public static final double kFlywheelP = 0.0;
   public static final double kFlywheelI = 0.0;
   public static final double kFlywheelD = 0.0;
+  
 }

@@ -13,6 +13,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.Constants.CANbusIds;
@@ -44,6 +45,11 @@ public class Shooter extends SubsystemBase {
     leftFlyWheelMotor.setInverted(InvertType.OpposeMaster);
     leftFlyWheelMotor.setNeutralMode(NeutralMode.Coast);
     leftFlyWheelMotor.configClosedloopRamp(10.0);
+
+    SmartDashboard.putNumber("Amp Speed",0.15);
+    SmartDashboard.putNumber("Speaker Speed", 0.60);
+    SmartDashboard.putNumber("Source Speed", 0.20);
+    SmartDashboard.putBoolean("Use Shelf", true);
   }
 
   @Override
@@ -53,7 +59,8 @@ public class Shooter extends SubsystemBase {
   }
 
   public void extendArm() {
-    ampArmSolenoid.set(true);
+    boolean useShelf = SmartDashboard.getBoolean("Use Shelf", false);
+    ampArmSolenoid.set(useShelf);
   }
 
   public void retractArm() {
@@ -61,16 +68,27 @@ public class Shooter extends SubsystemBase {
   }
 
   public void prepShootAtAmp() {
-    rightFlyWheelMotor.set(TalonFXControlMode.PercentOutput, 0.22);
+    double speed = SmartDashboard.getNumber("Amp Speed", 0.15);
+    rightFlyWheelMotor.set(TalonFXControlMode.PercentOutput, speed);
     //rightFlyWheelMotor.set(TalonFXControlMode.Velocity, MotorSpeeds.kAmpShootRPM * 2048.0/600.0); 
   }
 
   public void prepShootAtSpeaker() {
-    rightFlyWheelMotor.set(TalonFXControlMode.PercentOutput, 0.5);
+    double speed = SmartDashboard.getNumber("Speaker Speed", 0.60);
+    rightFlyWheelMotor.set(TalonFXControlMode.PercentOutput, speed);
     //rightFlyWheelMotor.set(TalonFXControlMode.Velocity, MotorSpeeds.kSpeakerShootRPM * 2048.0/600.0); 
   }
 
+  public void supplyFromHumanStation() {
+    double speed = SmartDashboard.getNumber("Source Speed", 0.20);
+    rightFlyWheelMotor.set(TalonFXControlMode.PercentOutput, -1.0*speed);
+  }
+
   public void shootStop() {
-    rightFlyWheelMotor.set(TalonFXControlMode.Velocity, 0);
+    rightFlyWheelMotor.set(TalonFXControlMode.PercentOutput, 0);
+  }
+
+  public Command supplyFromHumanStationCommand() {
+    return this.startEnd(this::supplyFromHumanStation, this::shootStop);
   }
 }
