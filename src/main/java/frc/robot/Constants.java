@@ -21,7 +21,7 @@ import edu.wpi.first.math.util.Units;
 public final class Constants {
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
-     public static final int kCoDriverControllerPort = 1;
+    public static final int kCoDriverControllerPort = 1;
   }
 
   public static class PneumaticsConstants {
@@ -107,6 +107,9 @@ public final class Constants {
     BackRightLocation,
     BackLeftLocation
   );
+  public static final double panRateOfChangeLimit = 8.0; // Translation Drive Demand Rate-of-Change Limit, units/sec
+  public static final double rotRateOfChangeLimit = 8.0; // Rotation Drive Demand Rate-of-Change Limit, units/sec
+  public static final double teleAngleHoldFactor = 0.035; // Teleop vision targeting P-gain, 1/degrees
 
   // Drivetrain PID Parameters
   public static final double kTurningEncoderPositionPIDMinInput = 0; // radians
@@ -143,4 +146,12 @@ public final class Constants {
   public static final double kFlywheelI = 0.0;
   public static final double kFlywheelD = 0.0;
   
+  // AprilTag Number definitions
+  public static class AprilTagIDs {
+    public static final int NoTarget = 0;
+    public static final int RedSpeaker = 4;
+    public static final int RedAmp = 5;
+    public static final int BlueAmp = 6;
+    public static final int BlueSpeaker = 7;
+  }
 }

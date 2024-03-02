@@ -18,14 +18,13 @@ import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drivetrain;
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.ClimberRightDown;
 import frc.robot.commands.DriveRobot;
+import frc.robot.commands.DriveRobotWithCamera;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -44,10 +43,9 @@ public class RobotContainer {
   private final Drivetrain drivetrain = new Drivetrain();
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
-  private final CommandXboxController m_driverController = new CommandXboxController(
-      OperatorConstants.kDriverControllerPort);
+  private final CommandXboxController m_driverController = new CommandXboxController(OperatorConstants.kDriverControllerPort);
   
-  private final CommandXboxController m_coDriveController = new CommandXboxController(OperatorConstants.kCoDriverControllerPort);
+  //private final CommandXboxController m_coDriveController = new CommandXboxController(OperatorConstants.kCoDriverControllerPort);
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -74,10 +72,18 @@ public class RobotContainer {
    * joysticks}.
    */
   private void configureBindings() {
-    drivetrain.setDefaultCommand(new DriveRobot(drivetrain, m_driverController::getLeftY, m_driverController::getLeftX, m_driverController::getRightX));
+    //drivetrain.setDefaultCommand(new DriveRobot(drivetrain, m_driverController::getLeftY, m_driverController::getLeftX, m_driverController::getRightX));
+    drivetrain.setDefaultCommand(new DriveRobotWithCamera(drivetrain, m_driverController::getLeftY, m_driverController::getLeftX, m_driverController::getRightX));
 
-    m_driverController.leftTrigger().whileTrue(new ShootInAmp(shooter));
-    m_driverController.rightTrigger().whileTrue(new ShootInSpeaker(shooter));
+    // VERY TEMPORARY CAMERA TEST
+    //m_driverController.y().whileTrue(new DriveRobotWithCamera(drivetrain, m_driverController::getLeftY, m_driverController::getLeftX, m_driverController::getRightX));
+
+    m_driverController.leftTrigger().whileTrue(
+      new ShootInAmp(shooter)
+      .alongWith(new InstantCommand(drivetrain::setTargetAmp)).handleInterrupt(drivetrain::setTargetNone));
+    m_driverController.rightTrigger().whileTrue(
+      new ShootInSpeaker(shooter)
+      .alongWith(new InstantCommand(drivetrain::setTargetSpeaker)).handleInterrupt(drivetrain::setTargetNone));
     m_driverController.a().whileTrue(new IntakeToShot(intake));
     m_driverController.b().whileTrue(intake.ejectIntakeCommand());
 
@@ -85,9 +91,6 @@ public class RobotContainer {
     m_driverController.leftStick().onTrue(new InstantCommand(drivetrain::setHighSpeed, drivetrain));
     m_driverController.back().onTrue(new InstantCommand(drivetrain::toggleDriveRobotRelative, drivetrain));
     m_driverController.start().onTrue(new InstantCommand(drivetrain::zeroHeading, drivetrain));
-
-    // m_driverController.leftTrigger().onTrue(new ShootInAmp(shooter));
-    // m_driverController.rightTrigger().onTrue(new ShootInSpeaker(shooter));
 
     m_driverController.povUp().whileTrue(new ClimberBothUp(climber));
     m_driverController.povDown().whileTrue(new ClimberBothDown(climber));
@@ -98,8 +101,11 @@ public class RobotContainer {
     m_driverController.leftBumper().whileTrue(new supplyFromHumanStation(intake, shooter));
 
     //second controller controls
-    m_coDriveController.povRight().whileTrue(new ClimberRightDown(climber)); 
-    m_coDriveController.povLeft().whileTrue(new ClimberLeftDown(climber));
+    //m_coDriveController.povRight().whileTrue(new ClimberRightDown(climber)); 
+    //m_coDriveController.povLeft().whileTrue(new ClimberLeftDown(climber));
+
+    //m_coDriveController.leftTrigger().whileTrue(new ShootInAmp(shooter));
+    //m_coDriveController.rightTrigger().whileTrue(new ShootInSpeaker(shooter));
   }
 
   /**

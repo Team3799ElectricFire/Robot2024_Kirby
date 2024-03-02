@@ -7,7 +7,6 @@ package frc.robot.commands;
 import frc.robot.Constants;
 import frc.robot.subsystems.Drivetrain;
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.SwerveModule;
 import java.util.function.DoubleSupplier;
 import edu.wpi.first.math.filter.SlewRateLimiter;
 
@@ -27,6 +26,7 @@ public class DriveRobot extends Command {
     this._ySupplier = ySupplier;
     this._rotSupplier = rotSupplier;
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(drivetrain);
   }
 
   // Called when the command is initially scheduled.

@@ -4,6 +4,8 @@
 
 package frc.robot.subsystems;
 
+import java.util.Optional;
+
 import com.ctre.phoenix.sensors.Pigeon2Configuration;
 import com.ctre.phoenix.sensors.WPI_Pigeon2;
 import com.pathplanner.lib.auto.AutoBuilder;
@@ -20,9 +22,12 @@ import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.Constants.AprilTagIDs;
 import frc.robot.Constants.CANbusIds;
 
 public class Drivetrain extends SubsystemBase {
@@ -61,6 +66,7 @@ public class Drivetrain extends SubsystemBase {
   private boolean _DriveRobotRelative = true;
   private double SpeedMultiple = Constants.LowSpeedMultiple;
   private Translation2d RotationCenter = new Translation2d();
+  private int targetFiducialID = AprilTagIDs.NoTarget; // ID number of AprilTag we are aiming at (0 means no target, aka camera off)
 
   /** Creates a new Drivetrain. */
   public Drivetrain() {
@@ -116,6 +122,7 @@ public class Drivetrain extends SubsystemBase {
 
     // Update driverstation
     //UpdateDashboard();
+    SmartDashboard.putNumber("Camera Target ID:", getTargetID());
   }
   
   public Pose2d getPose() {
@@ -281,6 +288,47 @@ public class Drivetrain extends SubsystemBase {
   }
   public void resetRotationCenterRobot() {
     RotationCenter = new Translation2d();
+  }
+
+  public void setTargetNone() {
+     targetFiducialID = AprilTagIDs.NoTarget;
+  }
+  public void setTargetAmp() {
+    //Check Alliance Color : https://docs.wpilib.org/en/stable/docs/software/basic-programming/alliancecolor.html
+    Optional<Alliance> ally = DriverStation.getAlliance();
+    if (ally.isPresent()) {
+      if (ally.get() == Alliance.Red) {
+        targetFiducialID = AprilTagIDs.RedAmp;
+      }
+      if (ally.get() == Alliance.Blue) {
+        targetFiducialID = AprilTagIDs.BlueAmp;
+      }
+    } else {
+      targetFiducialID = AprilTagIDs.NoTarget;
+    }
+  }
+  public void setTargetSpeaker() {
+    //Check Alliance Color: https://docs.wpilib.org/en/stable/docs/software/basic-programming/alliancecolor.html
+    Optional<Alliance> ally = DriverStation.getAlliance();
+    if (ally.isPresent()) {
+      if (ally.get() == Alliance.Red) {
+        targetFiducialID = AprilTagIDs.RedSpeaker;
+      }
+      if (ally.get() == Alliance.Blue) {
+        targetFiducialID = AprilTagIDs.BlueSpeaker;
+      }
+    } else {
+      targetFiducialID = AprilTagIDs.NoTarget;
+    }
+  }
+  public int getTargetID() {
+    return targetFiducialID;
+  }
+  public Command TargetAmpCommand() {
+    return this.startEnd(this::setTargetAmp, this::setTargetNone).asProxy();
+  }
+  public Command TargetSpeakerCommand() {
+    return this.startEnd(this::setTargetSpeaker, this::setTargetNone).asProxy();
   }
 
   public void UpdateDashboard() {
