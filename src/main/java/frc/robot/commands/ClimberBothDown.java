@@ -32,12 +32,14 @@ public class ClimberBothDown extends Command {
       _Climber.setLeftClimbMotor(-MotorSpeeds.kClimberSpeed);
     } else {
       _Climber.stopLeftClimbMotor();
+      _Climber.zeroLeftEncoder();
     }
 
     if (!_Climber.rightAtHome()){
       _Climber.setRightClimbMotor(-MotorSpeeds.kClimberSpeed);
     } else {
       _Climber.stopRightClimbMotor();
+      _Climber.zeroRightEncoder();
     }
     
   }
@@ -45,6 +47,14 @@ public class ClimberBothDown extends Command {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    if (_Climber.leftAtHome()){
+      _Climber.zeroLeftEncoder();
+    }
+
+    if (_Climber.rightAtHome()){
+      _Climber.zeroRightEncoder();
+    }
+    
     _Climber.stopRightClimbMotor();
     _Climber.stopLeftClimbMotor();
 

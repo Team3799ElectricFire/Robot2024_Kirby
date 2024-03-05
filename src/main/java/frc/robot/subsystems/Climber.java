@@ -6,7 +6,6 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
-import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
@@ -107,5 +106,13 @@ public class Climber extends SubsystemBase {
 
   public void stopRightClimbMotor() {
     rightClimbTalonSRX.set(TalonFXControlMode.PercentOutput, 0.0);
+  }
+
+  public void zeroLeftEncoder() {
+    leftClimbTalonSRX.setSelectedSensorPosition(0.0);
+  }
+
+  public void zeroRightEncoder() {
+    rightClimbTalonSRX.setSelectedSensorPosition(0.0);
   }
 }

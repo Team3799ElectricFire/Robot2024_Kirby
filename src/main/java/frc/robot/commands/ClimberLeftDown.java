@@ -28,16 +28,22 @@ public class ClimberLeftDown extends Command {
   @Override
   public void execute() {
     if (_Climber.leftAtHome()){
-    _Climber.stopLeftClimbMotor();
-    }
-    else {            
-    _Climber.setLeftClimbMotor(-MotorSpeeds.kClimberSpeed);
+      _Climber.stopLeftClimbMotor();
+      _Climber.zeroLeftEncoder();
+
+    } else {            
+      _Climber.setLeftClimbMotor(-MotorSpeeds.kClimberSpeed);
+
     }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    if (_Climber.leftAtHome()){
+      _Climber.zeroLeftEncoder();
+    }
+
     _Climber.stopLeftClimbMotor();
 
     _Climber.leftBrakeOn();
