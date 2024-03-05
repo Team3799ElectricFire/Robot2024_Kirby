@@ -72,8 +72,8 @@ public class RobotContainer {
    * joysticks}.
    */
   private void configureBindings() {
-    //drivetrain.setDefaultCommand(new DriveRobot(drivetrain, m_driverController::getLeftY, m_driverController::getLeftX, m_driverController::getRightX));
-    drivetrain.setDefaultCommand(new DriveRobotWithCamera(drivetrain, m_driverController::getLeftY, m_driverController::getLeftX, m_driverController::getRightX));
+    drivetrain.setDefaultCommand(new DriveRobot(drivetrain, m_driverController::getLeftY, m_driverController::getLeftX, m_driverController::getRightX));
+    //drivetrain.setDefaultCommand(new DriveRobotWithCamera(drivetrain, m_driverController::getLeftY, m_driverController::getLeftX, m_driverController::getRightX));
 
     // VERY TEMPORARY CAMERA TEST
     //m_driverController.y().whileTrue(new DriveRobotWithCamera(drivetrain, m_driverController::getLeftY, m_driverController::getLeftX, m_driverController::getRightX));
@@ -87,8 +87,10 @@ public class RobotContainer {
     m_driverController.a().whileTrue(new IntakeToShot(intake));
     m_driverController.b().whileTrue(intake.ejectIntakeCommand());
 
-    m_driverController.rightStick().onTrue(new InstantCommand(drivetrain::setLowSpeed, drivetrain));
-    m_driverController.leftStick().onTrue(new InstantCommand(drivetrain::setHighSpeed, drivetrain));
+    //m_driverController.rightStick().onTrue(new InstantCommand(drivetrain::setLowSpeed));
+    //m_driverController.leftStick().onTrue(new InstantCommand(drivetrain::setHighSpeed));
+    m_driverController.leftStick().onTrue(new InstantCommand(drivetrain::toggleHiLoSpeed));
+    
     m_driverController.back().onTrue(new InstantCommand(drivetrain::toggleDriveRobotRelative, drivetrain));
     m_driverController.start().onTrue(new InstantCommand(drivetrain::zeroHeading, drivetrain));
 

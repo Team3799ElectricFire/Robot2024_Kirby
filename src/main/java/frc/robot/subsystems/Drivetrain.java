@@ -283,6 +283,13 @@ public class Drivetrain extends SubsystemBase {
   public void setLowSpeed() {
     SpeedMultiple = Constants.LowSpeedMultiple;
   }
+  public void toggleHiLoSpeed() {
+    if (SpeedMultiple == Constants.LowSpeedMultiple) {
+      setHighSpeed();
+    } else {
+      setLowSpeed();
+    }
+  }
   public void setRotationCenterGamePiece(Translation2d newCenter) {
     RotationCenter = newCenter;
   }
