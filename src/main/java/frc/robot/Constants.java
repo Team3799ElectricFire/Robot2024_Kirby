@@ -50,7 +50,7 @@ public final class Constants {
   }
 
   public static class MotorSpeeds {
-    public static final double kIntakeSpeed = 1.0;
+    public static final double kIntakeSpeed = 0.75;
     public static final double kAmpShootRPM = 500; // TODO come back check speed
     public static final double kSpeakerShootRPM = 1575; //TODO come back check speed
     public static final double kClimberSpeed = 0.5;
