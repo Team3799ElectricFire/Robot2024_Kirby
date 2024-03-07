@@ -6,9 +6,22 @@
     "data": {
       "commands": [
         {
-          "type": "path",
+          "type": "parallel",
           "data": {
-            "pathName": "Example Path"
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "Forward Drive"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "IntakeNote"
+                }
+              }
+            ]
           }
         }
       ]
