@@ -52,19 +52,19 @@ public class Climber extends SubsystemBase {
     SmartDashboard.putBoolean("Right Home Switch", rightAtHome());
   }
 
-  public void leftBrakeOn() {
+  private void leftBrakeOn() {
     leftBrakeSolenoid.set(false);
   }
 
-  public void leftBrakeOff() {
+  private void leftBrakeOff() {
     leftBrakeSolenoid.set(true);
   }
 
-  public void rightBrakeOn() {
+  private void rightBrakeOn() {
     rightBrakeSolenoid.set(false);
   }
 
-  public void rightBrakeOff() {
+  private void rightBrakeOff() {
     rightBrakeSolenoid.set(true);
   }
 
@@ -77,10 +77,12 @@ public class Climber extends SubsystemBase {
   }
 
   public void setLeftClimbMotor(double speed) {
+    leftBrakeOff();
     leftClimbTalonSRX.set(TalonFXControlMode.PercentOutput, speed);
   }
 
   public void setRightClimbMotor(double speed) {
+    rightBrakeOff();
     rightClimbTalonSRX.set(TalonFXControlMode.PercentOutput, speed);
   }
 
@@ -102,10 +104,12 @@ public class Climber extends SubsystemBase {
 
   public void stopLeftClimbMotor() {
     leftClimbTalonSRX.set(TalonFXControlMode.PercentOutput, 0.0);
+    leftBrakeOn();
   }
 
   public void stopRightClimbMotor() {
     rightClimbTalonSRX.set(TalonFXControlMode.PercentOutput, 0.0);
+    rightBrakeOn();
   }
 
   public void zeroLeftEncoder() {

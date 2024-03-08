@@ -21,8 +21,8 @@ public class ClimberBothUp extends Command {
   @Override
   public void initialize() {
     // Turn brakes off so climbers can move
-    _climber.leftBrakeOff();
-    _climber.rightBrakeOff();
+    //_climber.leftBrakeOff();
+    //_climber.rightBrakeOff();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -53,8 +53,8 @@ public class ClimberBothUp extends Command {
     _climber.stopRightClimbMotor();
 
     // Put the brakes back on
-    _climber.leftBrakeOn();
-    _climber.rightBrakeOn();
+    //_climber.leftBrakeOn();
+    //_climber.rightBrakeOn();
   }
 
   // Returns true when the command should end.

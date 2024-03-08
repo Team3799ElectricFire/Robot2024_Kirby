@@ -20,8 +20,8 @@ public class ClimberBothDown extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    _Climber.rightBrakeOff();
-    _Climber.leftBrakeOff();
+    //_Climber.rightBrakeOff();
+    //_Climber.leftBrakeOff();
   } 
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -58,13 +58,13 @@ public class ClimberBothDown extends Command {
     _Climber.stopRightClimbMotor();
     _Climber.stopLeftClimbMotor();
 
-    _Climber.leftBrakeOn();
-    _Climber.rightBrakeOn();
+    //_Climber.leftBrakeOn();
+    //_Climber.rightBrakeOn();
 }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return _Climber.leftAtHome() && _Climber.rightAtHome();
   }
 }
