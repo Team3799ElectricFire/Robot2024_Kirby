@@ -22,12 +22,14 @@ import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.ClimberRightDown;
 import frc.robot.commands.DriveRobot;
+import frc.robot.commands.DriveRobotWithCamera;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -61,6 +63,7 @@ public class RobotContainer {
 
     // Get auto command list from Pathplanner
     autoChooser = AutoBuilder.buildAutoChooser();
+    SmartDashboard.putData(autoChooser);
 
     // Map controller buttons    
     configureBindings();
@@ -81,11 +84,8 @@ public class RobotContainer {
    * joysticks}.
    */
   private void configureBindings() {
-    drivetrain.setDefaultCommand(new DriveRobot(drivetrain, m_driverController::getLeftY, m_driverController::getLeftX, m_driverController::getRightX));
-    // drivetrain.setDefaultCommand(new DriveRobotWithCamera(drivetrain, m_driverController::getLeftY, m_driverController::getLeftX, m_driverController::getRightX));
-
-    // VERY TEMPORARY CAMERA TEST
-    // m_driverController.y().whileTrue(new DriveRobotWithCamera(drivetrain, m_driverController::getLeftY, m_driverController::getLeftX, m_driverController::getRightX));
+    //drivetrain.setDefaultCommand(new DriveRobot(drivetrain, m_driverController::getLeftY, m_driverController::getLeftX, m_driverController::getRightX));
+    drivetrain.setDefaultCommand(new DriveRobotWithCamera(drivetrain, m_driverController::getLeftY, m_driverController::getLeftX, m_driverController::getRightX));
 
     m_driverController.leftTrigger().whileTrue(
         new ShootInAmp(shooter)
