@@ -28,6 +28,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.ClimberRightDown;
+import frc.robot.commands.ClimberSticks;
 import frc.robot.commands.DriveRobot;
 import frc.robot.commands.DriveRobotWithCamera;
 
@@ -52,7 +53,7 @@ public class RobotContainer {
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
   private final CommandXboxController m_driverController = new CommandXboxController(OperatorConstants.kDriverControllerPort);
-  // private final CommandXboxController m_coDriveController = new CommandXboxController(OperatorConstants.kCoDriverControllerPort);
+  private final CommandXboxController m_coDriveController = new CommandXboxController(OperatorConstants.kCoDriverControllerPort);
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -112,6 +113,8 @@ public class RobotContainer {
     m_driverController.leftBumper().whileTrue(new supplyFromHumanStation(intake, shooter));
 
     // second controller controls
+    climber.setDefaultCommand(new ClimberSticks(climber, m_coDriveController::getLeftY, m_coDriveController::getRightY));
+    m_coDriveController.povDown().whileTrue(new ClimberBothDown(climber));
     // m_coDriveController.povRight().whileTrue(new ClimberRightDown(climber));
     // m_coDriveController.povLeft().whileTrue(new ClimberLeftDown(climber));
 
@@ -121,9 +124,11 @@ public class RobotContainer {
 
   public void registerCommands() {
     NamedCommands.registerCommand("IntakeNote", new IntakeIn(intake));
-    NamedCommands.registerCommand("PrepShotAtSpeaker",
-        new ShootInSpeaker(shooter)
-            .alongWith(new InstantCommand(drivetrain::setTargetSpeaker)).handleInterrupt(drivetrain::setTargetNone));
+    NamedCommands.registerCommand("PrepShotAtSpeaker", new InstantCommand(shooter::prepShootAtSpeaker,shooter));
+    NamedCommands.registerCommand("PrepShotAtAmp", new InstantCommand(shooter::prepShootAtAmp,shooter));
+    NamedCommands.registerCommand("ShootNote", new IntakeToShot(intake).withTimeout(0.5));
+    NamedCommands.registerCommand("OuttakeNote", intake.ejectIntakeCommand().withTimeout(0.5));
+    NamedCommands.registerCommand("StopFlywheels", new InstantCommand(shooter::shootStop,shooter));
   }
 
   /**
