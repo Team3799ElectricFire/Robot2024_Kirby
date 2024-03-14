@@ -29,6 +29,30 @@
               }
             ]
           }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "PrepShotAtAmp"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.75
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ShootNote"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "StopFlywheels"
+          }
         }
       ]
     }
