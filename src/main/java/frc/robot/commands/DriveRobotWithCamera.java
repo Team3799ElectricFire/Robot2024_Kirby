@@ -63,7 +63,15 @@ public class DriveRobotWithCamera extends Command {
     
 
 
-    // If driver is not trying to turn, prevent rotation with controller
+    // If driver is not trying to drive set raw demand to zero
+    if (!isDriving) {
+      xRawDemand = 0;
+      yRawDemand = 0;
+    }
+
+
+
+    // If driver is not trying to turn, prevent rotation with PID
     if (isDriving && !isTurning) {
       // Just stopped turning, rotation target still not set
       if (rotationTarget == null) {
@@ -106,19 +114,30 @@ public class DriveRobotWithCamera extends Command {
       // Camera found apriltag
       if (target != null) {
         // Overwrite driver turning command if camera found apriltag
-        rotRawDemand = -1 * Constants.teleAngleHoldFactor * target.tx;
+        rotRawDemand = -1 * Constants.teleCameraHoldFactor * target.tx;
       }
+    }
+    
+
+
+    if (isTurning && !isDriving  && !isAiming) {
+      // sligtly reduce sensitivity if turning in place
+      rotRawDemand = rotRawDemand * 0.9;
     }
 
 
 
     // Square resulting inputs (and keep signs)
-    double xDemand = _xLimiter.calculate( xRawDemand * Math.abs(xRawDemand));
-    double yDemand = _yLimiter.calculate( yRawDemand * Math.abs(yRawDemand));
-    double rotDemand = _rotLimiter.calculate( rotRawDemand * Math.abs(rotRawDemand));
+    //double xDemand = _xLimiter.calculate( xRawDemand * Math.abs(xRawDemand));
+    //double yDemand = _yLimiter.calculate( yRawDemand * Math.abs(yRawDemand));
+    //double rotDemand = _rotLimiter.calculate( rotRawDemand * Math.abs(rotRawDemand));
+    double xDemand = xRawDemand;
+    double yDemand = yRawDemand;
+    double rotDemand = rotRawDemand;
+
 
     // Only command the modules to move if the driver is trying to move
-    if (isDriving || isTurning) {
+    if (isDriving || isTurning || isAiming) {
       // Drive
       if (_drivetrain.getDriveRobotRelative()) {
         _drivetrain.driveRobotRelative(xDemand, yDemand, rotDemand);
