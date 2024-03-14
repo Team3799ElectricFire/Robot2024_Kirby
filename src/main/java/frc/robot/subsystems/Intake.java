@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.DioChannels;
 import frc.robot.Constants.CANbusIds;
 import frc.robot.Constants.MotorSpeeds;
+import frc.robot.Constants.SoftLimits;
 
 public class Intake extends SubsystemBase {
   private CANSparkMax intakeMotor; 
@@ -24,6 +25,7 @@ public class Intake extends SubsystemBase {
     intakeMotor = new CANSparkMax(CANbusIds.kIntakeMotorID, MotorType.kBrushless);
     intakeMotor.restoreFactoryDefaults();
     intakeMotor.setInverted(false);
+    intakeMotor.setSmartCurrentLimit(SoftLimits.kIntakeCurrentLimit);
     intakeMotor.burnFlash();
 
     noteSensor = new DigitalInput(DioChannels.kNoteSensorChannel);

@@ -46,10 +46,10 @@ public class Climber extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    SmartDashboard.putNumber("Left Climb Encoder", getLeftEncoder());
-    SmartDashboard.putNumber("Right Climb Encoder", getRightEncoder());
-    SmartDashboard.putBoolean("Left Home Switch", leftAtHome());
-    SmartDashboard.putBoolean("Right Home Switch", rightAtHome());
+    //SmartDashboard.putNumber("Left Climb Encoder", getLeftEncoder());
+    //SmartDashboard.putNumber("Right Climb Encoder", getRightEncoder());
+    //SmartDashboard.putBoolean("Left Home Switch", leftAtHome());
+    //SmartDashboard.putBoolean("Right Home Switch", rightAtHome());
   }
 
   private void leftBrakeOn() {

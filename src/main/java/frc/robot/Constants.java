@@ -51,8 +51,9 @@ public final class Constants {
 
   public static class MotorSpeeds {
     public static final double kIntakeSpeed = 0.75;
-    public static final double kAmpShootRPM = 500; // TODO come back check speed
-    public static final double kSpeakerShootRPM = 1575; //TODO come back check speed
+    public static final double kAmpShootRPM = 615;
+    public static final double kSpeakerShootRPM = 3640;
+    public static final double kHumanFeederRPM = 1020;
     public static final double kClimberSpeed = 0.5;
   }
 
@@ -64,6 +65,8 @@ public final class Constants {
 
   public static class SoftLimits {
     public static final double kClimberMax = 147000;
+    public static final int kIntakeCurrentLimit = 40;
+    public static final double kFlyWheelCurrentLimit = 50;
   }
 
   
@@ -91,11 +94,11 @@ public final class Constants {
   // Chassis configuration
   public static final double kTrackWidth = Units.inchesToMeters(30.0 - (2*1.75)); // Wdith in Y-Axis direction (left right)
   public static final double kWheelBase = Units.inchesToMeters(26.0 - (2*1.75)); // Length in X-Axis direction (fwd back)
-  public static final double kDriveBaseRadius = Math.sqrt(Math.pow(kTrackWidth/2.0,2) + Math.pow(kWheelBase/2.0,2)); // TODO check this math
+  public static final double kDriveBaseRadius = Math.sqrt(Math.pow(kTrackWidth/2.0,2) + Math.pow(kWheelBase/2.0,2));
   public static final double kMaxSpeedMetersPerSecond = Units.feetToMeters(15.76);
   public static final double kMinSpeedMetersPerSecond = 0.01;
   public static final double kMaxAccelMetersPerSecondSquared = 2.0;
-  public static final double kMaxAngularSpeed = 6.0; //kMaxSpeedMetersPerSecond / Units.inchesToMeters(18.55);
+  public static final double kMaxAngularSpeed = 6.0;
   public static final double minThumbstickMagnitude = 0.1;
   public static final Translation2d FrontRightLocation = new Translation2d(+kWheelBase / 2, -kTrackWidth / 2); // Positive X is fwd
   public static final Translation2d FrontLeftLocation = new Translation2d(+kWheelBase / 2, +kTrackWidth / 2); // Positive Y if left
@@ -109,7 +112,8 @@ public final class Constants {
   );
   public static final double panRateOfChangeLimit = 8.0; // Translation Drive Demand Rate-of-Change Limit, units/sec
   public static final double rotRateOfChangeLimit = 8.0; // Rotation Drive Demand Rate-of-Change Limit, units/sec
-  public static final double teleAngleHoldFactor = 0.035; // Teleop vision targeting P-gain, 1/degrees
+  public static final double teleAngleHoldFactor = 0.035; // Teleop heading maintaining P-gain, 1/degrees
+  public static final double teleCameraHoldFactor = 0.010; // Teleop vision targeting P-gain, 1/degrees
 
   // Drivetrain PID Parameters
   public static final double kTurningEncoderPositionPIDMinInput = 0; // radians
@@ -142,8 +146,8 @@ public final class Constants {
 
   // Flywheel PID Parameters
   public static final double kFlywheelFF = 1023.0/20450.0;
-  public static final double kFlywheelP = 0.0;
-  public static final double kFlywheelI = 0.0;
+  public static final double kFlywheelP = 0.05;
+  public static final double kFlywheelI = 0.0001;
   public static final double kFlywheelD = 0.0;
   
   // AprilTag Number definitions

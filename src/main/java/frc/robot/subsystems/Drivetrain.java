@@ -121,7 +121,7 @@ public class Drivetrain extends SubsystemBase {
     );
 
     // Update driverstation
-    //UpdateDashboard();
+    UpdateDashboard();
     //SmartDashboard.putNumber("Camera Target ID:", getTargetID());
   }
   
@@ -262,11 +262,11 @@ public class Drivetrain extends SubsystemBase {
 
   public void setDriveRobotRelative() {
     this._DriveRobotRelative = true;
-    System.out.println("Set Robot Relative");
+    //System.out.println("Set Robot Relative");
   }
   public void setDriveFieldRelative() {
     this._DriveRobotRelative = false;
-    System.out.println("Set Field Relative");
+    //System.out.println("Set Field Relative");
   }
   public void toggleDriveRobotRelative() {
     this._DriveRobotRelative = !this._DriveRobotRelative;
@@ -274,7 +274,7 @@ public class Drivetrain extends SubsystemBase {
   public boolean getDriveRobotRelative() {
     return this._DriveRobotRelative;
   }
-  public void setTurboSpeed() { // TODO add functions for "ShiftUP" and "ShiftDown"
+  public void setTurboSpeed() {
     SpeedMultiple = Constants.TurboSpeedMultiple;
   }
   public void setHighSpeed() {
@@ -341,12 +341,12 @@ public class Drivetrain extends SubsystemBase {
   public void UpdateDashboard() {
     // Report to driverstation
     SmartDashboard.putNumber("Drivetrain Gyro", Pidgey.getRotation2d().getDegrees());
-    SmartDashboard.putNumber("FL Abs Angle", FrontLeftModule.getState().angle.getDegrees());
-    SmartDashboard.putNumber("BL Abs Angle", BackLeftModule.getState().angle.getDegrees());
-    SmartDashboard.putNumber("BR Abs Angle", BackRightModule.getState().angle.getDegrees());
-    SmartDashboard.putNumber("FR Abs Angle", FrontRightModule.getState().angle.getDegrees());
-    SmartDashboard.putNumber("Rot Velocity", Pidgey.getRate());
-    SmartDashboard.putNumber("Pitch", getPitch());
+    //SmartDashboard.putNumber("FL Abs Angle", FrontLeftModule.getState().angle.getDegrees());
+    //SmartDashboard.putNumber("BL Abs Angle", BackLeftModule.getState().angle.getDegrees());
+    //SmartDashboard.putNumber("BR Abs Angle", BackRightModule.getState().angle.getDegrees());
+    //SmartDashboard.putNumber("FR Abs Angle", FrontRightModule.getState().angle.getDegrees());
+    //SmartDashboard.putNumber("Rot Velocity", Pidgey.getRate());
+    //SmartDashboard.putNumber("Pitch", getPitch());
     SmartDashboard.putNumber("Speed Multiple", SpeedMultiple);
     SmartDashboard.putBoolean("Robot Relative Mode", _DriveRobotRelative);
   }
