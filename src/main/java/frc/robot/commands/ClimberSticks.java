@@ -31,19 +31,19 @@ public class ClimberSticks extends Command {
   @Override
   public void execute() {
     // Left Climber
-    double leftDemand = -0.5 * _LeftSupplier.getAsDouble();
+    double leftDemand = -1.0 * _LeftSupplier.getAsDouble();
     if ((Math.abs(leftDemand) > Constants.minThumbstickMagnitude) &&
         ((leftDemand > 0 && !_Climber.leftAtMax()) || (leftDemand < 0 && !_Climber.leftAtHome()))) {
-      _Climber.setLeftClimbMotor(leftDemand);
+      _Climber.setLeftClimbMotor(0.5 * leftDemand);
     } else {
       _Climber.stopLeftClimbMotor();
     }
 
     // Right Climber
-    double rightDemand = -0.5 * _RightSupplier.getAsDouble();
+    double rightDemand = -1.0 * _RightSupplier.getAsDouble();
     if ((Math.abs(rightDemand) > Constants.minThumbstickMagnitude) && 
         ((rightDemand > 0 && !_Climber.rightAtMax()) || (rightDemand < 0 && !_Climber.rightAtHome()))) {
-      _Climber.setRightClimbMotor(rightDemand);
+      _Climber.setRightClimbMotor(0.5 * rightDemand);
     } else {
       _Climber.stopRightClimbMotor();
     }

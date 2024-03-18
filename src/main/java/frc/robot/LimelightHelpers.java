@@ -369,7 +369,6 @@ public class LimelightHelpers {
     }
 
     private static ObjectMapper mapper;
-
     /**
      * Print JSON Parse time to the console in milliseconds
      */

@@ -14,6 +14,7 @@ import frc.robot.commands.ClimberLeftDown;
 import frc.robot.commands.IntakeIn;
 import frc.robot.commands.IntakeToShot;
 import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Lights;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drivetrain;
@@ -29,7 +30,6 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.ClimberRightDown;
 import frc.robot.commands.ClimberSticks;
-import frc.robot.commands.DriveRobot;
 import frc.robot.commands.DriveRobotWithCamera;
 
 /**
@@ -105,6 +105,8 @@ public class RobotContainer {
     m_driverController.start().onTrue(new InstantCommand(drivetrain::zeroHeading, drivetrain));
 
     m_driverController.povUp().whileTrue(new ClimberBothUp(climber));
+    m_driverController.povUpLeft().whileTrue(new ClimberBothUp(climber));
+    m_driverController.povUpRight().whileTrue(new ClimberBothUp(climber));
     m_driverController.povDown().whileTrue(new ClimberBothDown(climber));
     m_driverController.povLeft().whileTrue(new ClimberLeftDown(climber));
     m_driverController.povRight().whileTrue(new ClimberRightDown(climber));
@@ -115,6 +117,13 @@ public class RobotContainer {
     // second controller controls
     climber.setDefaultCommand(new ClimberSticks(climber, m_coDriveController::getLeftY, m_coDriveController::getRightY));
     m_coDriveController.povDown().whileTrue(new ClimberBothDown(climber));
+    m_coDriveController.leftTrigger().whileTrue(
+        new ShootInAmp(shooter)
+            .alongWith(new InstantCommand(drivetrain::setTargetAmp)).handleInterrupt(drivetrain::setTargetNone));
+    m_coDriveController.rightTrigger().whileTrue(
+        new ShootInSpeaker(shooter)
+            .alongWith(new InstantCommand(drivetrain::setTargetSpeaker)).handleInterrupt(drivetrain::setTargetNone));
+    m_coDriveController.b().whileTrue(shooter.prepFarShotCommand());
     // m_coDriveController.povRight().whileTrue(new ClimberRightDown(climber));
     // m_coDriveController.povLeft().whileTrue(new ClimberLeftDown(climber));
 

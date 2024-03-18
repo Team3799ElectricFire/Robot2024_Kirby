@@ -2,44 +2,25 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 0.48,
-      "y": 7.0
+      "x": 0.7,
+      "y": 6.67
     },
-    "rotation": 0
+    "rotation": 60.0
   },
   "command": {
     "type": "sequential",
     "data": {
       "commands": [
         {
-          "type": "parallel",
-          "data": {
-            "commands": [
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "Forward Drive"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "IntakeNote"
-                }
-              }
-            ]
-          }
-        },
-        {
           "type": "named",
           "data": {
-            "name": "PrepShotAtAmp"
+            "name": "PrepShotAtSpeaker"
           }
         },
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.75
+            "waitTime": 3.0
           }
         },
         {
@@ -52,6 +33,18 @@
           "type": "named",
           "data": {
             "name": "StopFlywheels"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 10.0
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "RightSpkrToRightNote"
           }
         }
       ]

@@ -5,6 +5,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -36,18 +37,20 @@ public class Climber extends SubsystemBase {
     leftClimbTalonSRX.configFactoryDefault();
     leftClimbTalonSRX.setInverted(true);
     leftClimbTalonSRX.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor);
-    
+    leftClimbTalonSRX.setNeutralMode(NeutralMode.Brake);
+
     rightClimbTalonSRX = new TalonFX(CANbusIds.kRightClimbMotorID);
     rightClimbTalonSRX.configFactoryDefault();
     rightClimbTalonSRX.setInverted(true);
     rightClimbTalonSRX.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor);
+    rightClimbTalonSRX.setNeutralMode(NeutralMode.Brake);
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    //SmartDashboard.putNumber("Left Climb Encoder", getLeftEncoder());
-    //SmartDashboard.putNumber("Right Climb Encoder", getRightEncoder());
+    SmartDashboard.putNumber("Left Climb Encoder", getLeftEncoder());
+    SmartDashboard.putNumber("Right Climb Encoder", getRightEncoder());
     //SmartDashboard.putBoolean("Left Home Switch", leftAtHome());
     //SmartDashboard.putBoolean("Right Home Switch", rightAtHome());
   }
@@ -91,7 +94,7 @@ public class Climber extends SubsystemBase {
   }
 
   public boolean leftAtMax() {
-    return getLeftEncoder() > SoftLimits.kClimberMax;
+    return getLeftEncoder() > SoftLimits.kLeftClimberMax;
   }
 
   public double getRightEncoder() {

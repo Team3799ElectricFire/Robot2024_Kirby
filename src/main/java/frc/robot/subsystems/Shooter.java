@@ -13,6 +13,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -53,7 +54,8 @@ public class Shooter extends SubsystemBase {
     leftFlyWheelMotor.configStatorCurrentLimit(currentLimits);
     //leftFlyWheelMotor.configClosedloopRamp(10.0);
 
-    //SmartDashboard.putNumber("Amp RPM",650.0);
+    SmartDashboard.putNumber("Amp RPM",MotorSpeeds.kAmpShootRPM);
+    SmartDashboard.putNumber("Far Shot RPM",MotorSpeeds.kFarLaunchRPM);
     //SmartDashboard.putNumber("Speaker Speed", 0.60);
     //SmartDashboard.putNumber("Source Speed", 0.20);
     //SmartDashboard.putBoolean("Use Shelf", true);
@@ -75,9 +77,9 @@ public class Shooter extends SubsystemBase {
   }
 
   public void prepShootAtAmp() {
-    //double speed = SmartDashboard.getNumber("Amp RPM", 650.0);
-    //rightFlyWheelMotor.set(TalonFXControlMode.Velocity, speed * 2048.0/600.0);
-    rightFlyWheelMotor.set(TalonFXControlMode.Velocity, MotorSpeeds.kAmpShootRPM * 2048.0/600.0); 
+    double speed = SmartDashboard.getNumber("Amp RPM", MotorSpeeds.kSpeakerShootRPM);
+    rightFlyWheelMotor.set(TalonFXControlMode.Velocity, speed * 2048.0/600.0);
+    //rightFlyWheelMotor.set(TalonFXControlMode.Velocity, MotorSpeeds.kAmpShootRPM * 2048.0/600.0); 
   }
 
   public void prepShootAtSpeaker() {
@@ -92,12 +94,21 @@ public class Shooter extends SubsystemBase {
     rightFlyWheelMotor.set(TalonFXControlMode.Velocity, -1.0 * MotorSpeeds.kHumanFeederRPM * 2048.0/600.0);
   }
 
+  public void prepShootFar() {
+    double speed = SmartDashboard.getNumber("Far Shot RPM", MotorSpeeds.kFarLaunchRPM);
+    rightFlyWheelMotor.set(TalonFXControlMode.Velocity, speed * 2048.0/600.0);
+  }
+
   public void shootStop() {
     rightFlyWheelMotor.set(TalonFXControlMode.PercentOutput, 0);
   }
 
   public Command supplyFromHumanStationCommand() {
     return this.startEnd(this::supplyFromHumanStation, this::shootStop);
+  }
+
+  public Command prepFarShotCommand() {
+    return this.startEnd(this::prepShootFar, this::shootStop);
   }
 
   public double getFlywheelRpm() {

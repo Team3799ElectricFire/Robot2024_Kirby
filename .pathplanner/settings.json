@@ -2,7 +2,9 @@
   "robotWidth": 0.9271,
   "robotLength": 0.8255,
   "holonomicMode": true,
-  "pathFolders": [],
+  "pathFolders": [
+    "Spkr & Notes"
+  ],
   "autoFolders": [],
   "defaultMaxVel": 3.0,
   "defaultMaxAccel": 3.0,

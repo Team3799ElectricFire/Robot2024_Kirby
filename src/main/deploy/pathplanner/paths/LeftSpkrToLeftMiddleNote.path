@@ -1,0 +1,74 @@
+{
+  "version": 1.0,
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 0.6988446409325251,
+        "y": 4.446702226737787
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 1.1988446409325246,
+        "y": 3.5806768229533494
+      },
+      "isLocked": false,
+      "linkedName": "LeftSpkrStart"
+    },
+    {
+      "anchor": {
+        "x": 5.959080746990322,
+        "y": 0.77
+      },
+      "prevControl": {
+        "x": 4.9590807469903275,
+        "y": 0.77
+      },
+      "nextControl": {
+        "x": 6.84964848797975,
+        "y": 0.77
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 8.53,
+        "y": 0.77
+      },
+      "prevControl": {
+        "x": 7.548850002861102,
+        "y": 0.77
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "LeftMiddleNote"
+    }
+  ],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 1.6,
+      "rotationDegrees": 0,
+      "rotateFast": false
+    }
+  ],
+  "constraintZones": [],
+  "eventMarkers": [],
+  "globalConstraints": {
+    "maxVelocity": 3.0,
+    "maxAcceleration": 3.0,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": 0,
+    "rotateFast": false
+  },
+  "reversed": false,
+  "folder": "Spkr & Notes",
+  "previewStartingState": {
+    "rotation": -60.0,
+    "velocity": 0
+  },
+  "useDefaultConstraints": true
+}

@@ -1,0 +1,52 @@
+{
+  "version": 1.0,
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 8.53,
+        "y": 0.77
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 7.529999999999999,
+        "y": 0.7700000000000001
+      },
+      "isLocked": false,
+      "linkedName": "LeftMiddleNote"
+    },
+    {
+      "anchor": {
+        "x": 0.6988446409325251,
+        "y": 4.446702226737787
+      },
+      "prevControl": {
+        "x": 1.1988446409325246,
+        "y": 3.5806768229533485
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "LeftSpkrStart"
+    }
+  ],
+  "rotationTargets": [],
+  "constraintZones": [],
+  "eventMarkers": [],
+  "globalConstraints": {
+    "maxVelocity": 3.0,
+    "maxAcceleration": 3.0,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": -60.0,
+    "rotateFast": false
+  },
+  "reversed": false,
+  "folder": "Spkr & Notes",
+  "previewStartingState": {
+    "rotation": 0,
+    "velocity": 0
+  },
+  "useDefaultConstraints": true
+}

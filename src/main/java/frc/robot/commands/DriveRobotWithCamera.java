@@ -7,6 +7,7 @@ package frc.robot.commands;
 import frc.robot.Constants;
 import frc.robot.LimelightHelpers;
 import frc.robot.Constants.AprilTagIDs;
+import frc.robot.LimelightHelpers.LimelightResults;
 import frc.robot.LimelightHelpers.LimelightTarget_Fiducial;
 import frc.robot.subsystems.Drivetrain;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -94,7 +95,9 @@ public class DriveRobotWithCamera extends Command {
     // If camera is on, start checking for results
     if (isAiming) {
       // Get list of all apriltags camera sees
-      LimelightTarget_Fiducial[] detections = LimelightHelpers.getLatestResults("limelight").targetingResults.targets_Fiducials;
+      //LimelightTarget_Fiducial[] detections = LimelightHelpers.getLatestResults("limelight").targetingResults.targets_Fiducials;
+      LimelightResults results = LimelightHelpers.getLatestResults("");
+      var detections = results.targetingResults.targets_Fiducials;
       
       // Create variable to track which apriltag we are targeting
       LimelightTarget_Fiducial target = null;
@@ -141,10 +144,10 @@ public class DriveRobotWithCamera extends Command {
       // Drive
       if (_drivetrain.getDriveRobotRelative()) {
         _drivetrain.driveRobotRelative(xDemand, yDemand, rotDemand);
-  
+        
       } else {
         _drivetrain.driveFieldRelative(xDemand, yDemand, rotDemand);
-  
+        
       }
     } else {
       // Otherwise, tell modules to stop

@@ -51,9 +51,10 @@ public final class Constants {
 
   public static class MotorSpeeds {
     public static final double kIntakeSpeed = 0.75;
-    public static final double kAmpShootRPM = 615;
+    public static final double kAmpShootRPM = 500;
     public static final double kSpeakerShootRPM = 3640;
     public static final double kHumanFeederRPM = 1020;
+    public static final double kFarLaunchRPM = 5500;
     public static final double kClimberSpeed = 0.5;
   }
 
@@ -61,10 +62,23 @@ public final class Constants {
     public static final int kNoteSensorChannel = 0;
     public static final int kLeftHomeSwitch = 1;
     public static final int kRightHomeSwitch = 2;
+    public static final int LightsPin0 = 4;
+    public static final int LightsPin1 = 5;
+    public static final int LightsPin2 = 6;
+  }
+
+  public static class LedColors {
+    public static final int Rainbow = 0;
+    public static final int Yellow = 2;
+    public static final int Green = 3;
+    public static final int Blue = 4;
+    public static final int Purple = 5;
+    public static final int Red = 7;
   }
 
   public static class SoftLimits {
     public static final double kClimberMax = 147000;
+    public static final double kLeftClimberMax = 100000;
     public static final int kIntakeCurrentLimit = 40;
     public static final double kFlyWheelCurrentLimit = 50;
   }
