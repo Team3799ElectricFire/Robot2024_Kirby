@@ -51,9 +51,9 @@ public final class Constants {
 
   public static class MotorSpeeds {
     public static final double kIntakeSpeed = 0.75;
-    public static final double kAmpShootRPM = 500;
-    public static final double kSpeakerShootRPM = 3640;
-    public static final double kHumanFeederRPM = 1020;
+    public static final double kAmpShootRPM = 365; // Old AmpShotRPM was 500
+    public static final double kSpeakerShootRPM = 2650; // Old SpeakerShootRPM was 3640
+    public static final double kHumanFeederRPM = 740; // Old HumanFeederRPM was 1020
     public static final double kFarLaunchRPM = 5500;
     public static final double kClimberSpeed = 0.5;
   }
@@ -78,7 +78,7 @@ public final class Constants {
 
   public static class SoftLimits {
     public static final double kClimberMax = 147000;
-    public static final double kLeftClimberMax = 100000;
+    public static final double kLeftClimberMax = 147000;
     public static final int kIntakeCurrentLimit = 40;
     public static final double kFlyWheelCurrentLimit = 50;
   }
