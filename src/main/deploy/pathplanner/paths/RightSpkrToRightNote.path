@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 0.7,
-        "y": 6.665430988519635
+        "x": 0.8097810790216173,
+        "y": 6.591473363126907
       },
       "prevControl": null,
       "nextControl": {
-        "x": 0.9499999999999995,
-        "y": 7.098443690411854
+        "x": 2.319659884493519,
+        "y": 6.917672608382541
       },
       "isLocked": false,
       "linkedName": "RightSpkrStart"
     },
     {
       "anchor": {
-        "x": 2.7049452297102787,
-        "y": 6.998240302786913
+        "x": 3.037754543977556,
+        "y": 7.109176740876004
       },
       "prevControl": {
-        "x": 2.2049452297102787,
-        "y": 6.998240302786913
+        "x": 2.537754543977556,
+        "y": 7.109176740876004
       },
       "nextControl": null,
       "isLocked": false,
@@ -51,7 +51,7 @@
   "reversed": false,
   "folder": "Spkr & Notes",
   "previewStartingState": {
-    "rotation": 60.0,
+    "rotation": 60.255118703057796,
     "velocity": 0
   },
   "useDefaultConstraints": true

@@ -2,10 +2,10 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 0.7,
-      "y": 4.45
+      "x": 0.81,
+      "y": 6.59
     },
-    "rotation": -61.080197219961434
+    "rotation": 60.0
   },
   "command": {
     "type": "sequential",
@@ -42,7 +42,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "LeftSpkrToLeftNote"
+                  "pathName": "RightSpkrToRightNote"
                 }
               },
               {
@@ -61,7 +61,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "LeftNoteToCenterSpkr"
+                  "pathName": "RightNoteToCenterSpkr"
                 }
               },
               {
@@ -142,7 +142,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "CenterSpkrtoRightNote"
+                  "pathName": "CenterSpkrtoLeftNote"
                 }
               },
               {
@@ -161,7 +161,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "RightNoteToCenterSpkr"
+                  "pathName": "LeftNoteToCenterSpkr"
                 }
               },
               {
